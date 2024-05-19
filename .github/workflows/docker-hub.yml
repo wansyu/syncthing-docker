@@ -6,14 +6,6 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v4
-        with: 
-          ref: main
-          run: |
-            bash prepare.sh
-
       - name: Generate release tag
         id: tag
         run: |
@@ -37,6 +29,8 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          run: |
+            bash prepare.sh
           context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/syncthing:latest , ${{ secrets.DOCKERHUB_USERNAME }}/syncthing:${{ steps.tag.outputs.release_tag }} , ${{ secrets.DOCKERHUB_USERNAME }}/syncthing:${{ steps.tag.outputs.release_tag_short }}
