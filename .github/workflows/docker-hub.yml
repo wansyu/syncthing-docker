@@ -29,9 +29,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
-          run: |
-            bash prepare.sh
-          context: .
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/syncthing:latest , ${{ secrets.DOCKERHUB_USERNAME }}/syncthing:${{ steps.tag.outputs.release_tag }} , ${{ secrets.DOCKERHUB_USERNAME }}/syncthing:${{ steps.tag.outputs.release_tag_short }}
 
