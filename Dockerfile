@@ -45,6 +45,7 @@ LABEL maintainer="thelamer"
 # environment settings
 ENV HOME="/config"
 ENV PORT=8384
+ENV PORT=${PORT}
 
 RUN \
   echo "**** create var lib folder ****" && \
